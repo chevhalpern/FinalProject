@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+    img {
+        border: 5px solid #000000;
+        border-radius: 12px;
+        height: 410px;
+        width: 300px;
+    }
+    body {
+    font-family: Copperplate, Papyrus, fantasy;
+    margin: 1;
+    }
+    .header {
+    padding: 10px;
+    border-radius: 12px;
+    text-align: center;
+    background: #b9ddff;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    }
+    .image {
+        width: 1250px;
+        height: 550px;
+        display: flex;
+        justify-content: left;
+        padding-top: 40px;
+        padding-left: 50px;
+        position: relative;
+        }
+    .buttons {
+        padding-left: 80px;
+        padding-top: 20px;
+        width: 1250px;
+        height: 430px;
+        display: inline-block;
+        justify-content: left;
+
+    }
+    .content 
+    {
+        padding:20px;
+    }
+    .left {
+    display: block;
+    margin-left: 20px;
+    margin-top: 30px;
+    }
+    .w3-button {
+        height: 80px;
+        width: 150px;
+    }
+    .area1 {
+        height: 100px;
+        width: 500px;
+    }
+    .area2 {
+        height: 100px;
+        width: 500px;
+    }
+    .area3 {
+        height: 100px;
+        width: 500px;
+    }
+    .question {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        height: 100px;
+        width: 500px;
+    }
+    .restart {
+        padding-top:0px;
+        height: 25px;
+        width: 300px;
+        position: absolute;
+        bottom: 0;
+        padding-bottom: 85px;
+
+    }
+
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="htpps://pyscript.net/alpha/pyscript.css" />
+    <script defer src=”htpps://pyscript.net/alpha/pyscript.js”></script>
+    <!-- <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css" />
+<script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script> -->
+</head>
+
+
+
+
+<body>
+    <div class="header">
+        <h1 style="text-align:center;">Test Your Gedolim Knowledge!</h1>
+      </div>
+    <div class="image">
+        <img id="image" src="">
+        <div class="restart" style="float: bottom;">
+            <button id="button" class="w3-button w3-purple w3-round-large" style="width:300px; height:50px" onclick="generate()">Play!</button>
+            <script>
+                function generate()
+                {
+                    // function randomNum(){
+                    //     let randomNum = Math.floor(Math.random * (array.length - 1));
+                    //     return randomNum;
+                    // }
+                    function generateRandomImage(array){
+                        let image = document.getElementById("image");
+                        // number = randomNum();
+                        image.setAttribute("src", array[0]);
+                    };
+                    const imageArray = [
+                        "//upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Vilna_Gaon_authentic_portrait.JPG/87px-Vilna_Gaon_authentic_portrait.JPG",
+                        "//upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Yitzchak_Zev_Soloveitchik.jpg/96px-Yitzchak_Zev_Soloveitchik.jpg",
+                        "//upload.wikimedia.org/wikipedia/commons/thumb/0/02/Medini_1.jpg/91px-Medini_1.jpg"
+                    ];
+                    // const button = document.getElementById("button");
+                    // window.onload = () => generateRandomImage(imageArray);
+                    // button.addEventListener("click", () => generateRandomImage(imageArray));
+                    return generateRandomImage(imageArray);
+                };
+            </script>
+            <!-- <script>
+                function generate(){
+                   const imageArray = [
+                    "//upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Vilna_Gaon_authentic_portrait.JPG/87px-Vilna_Gaon_authentic_portrait.JPG",
+                "//upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Yitzchak_Zev_Soloveitchik.jpg/96px-Yitzchak_Zev_Soloveitchik.jpg",
+            "//upload.wikimedia.org/wikipedia/commons/thumb/0/02/Medini_1.jpg/91px-Medini_1.jpg"];
+            const image = document.getElementById("image");
+            const button = document.getElementById("button");
+            window.onload = () => generateRandomImage(imageArray);
+            button.addEventListener("click", () => generateRandomImage(imageArray));
+
+            function generateRandomImage(array){
+                let randomNum = Math.floor(Math.random * array.length);
+                image.setAttribute("src", array[randomNum])
+                }
+                }
+            </script> -->
+        </div> 
+        <div class="buttons" style="float: right; width: 50%;">
+            <div class="question">
+                <h1>Which Gadol is this?</h1>
+            </div>
+            <div class="area1">
+                <button class="w3-button w3-red w3-round-large" style="width:500px;">Option 1</button>
+            </div>
+            <div class="area2">
+                <button class="w3-button w3-blue w3-round-large" style="width:500px;">Option 2</button>
+            </div>
+            <div class="area3">
+                <button class="w3-button w3-green w3-round-large" style="width:500px;">Option 3</button>
+            </div>
+        </div>
+    </div>
+   
+</body>
+</html>
