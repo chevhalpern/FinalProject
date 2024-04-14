@@ -70,78 +70,91 @@ def add():
                         db.session.add(Gedolim(f'{data[0][row]}', f'{data[1][row]}', f'{data[2][row]}'))
                 db.session.commit()
                 return redirect(url_for("home"))
-# def random():
-#         with app.app_context():
-#                 gedolim = db.session.query(Gedolim).all()
-#                 randomNumber = random.randint(0, len(gedolim) - 1)
-#                 randomPhotoObject = gedolim[randomNumber]
-#                 randomImage = re.findall("//upload.+?(?=-https)", str(randomPhotoObject))
-#         return randomImage
 
 
 @app.get("/")
 def home():
-        # gedolim_image = db.session.query(Gedolim).all()
-        gedolim_image = "//upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Vilna_Gaon_authentic_portrait.JPG/87px-Vilna_Gaon_authentic_portrait.JPG"
-        return render_template("base.html", gedolim=gedolim_image)
+        gadol = Gadol()
+        return render_template("base.html", gedolim=gadol)
 
-# def generate(){
-#                 array = [//upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Vilna_Gaon_authentic_portrait.JPG/87px-Vilna_Gaon_authentic_portrait.JPG,
-#                 //upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Yitzchak_Zev_Soloveitchik.jpg/96px-Yitzchak_Zev_Soloveitchik.jpg,
-#                 //upload.wikimedia.org/wikipedia/commons/thumb/0/02/Medini_1.jpg/91px-Medini_1.jpg,
-#                 //upload.wikimedia.org/wikipedia/commons/thumb/3/38/Shlomo_Ganzfried.jpg/86px-Shlomo_Ganzfried.jpg,
-#                 //upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Chaim_Yosef_David_Azulai.jpg/88px-Chaim_Yosef_David_Azulai.jpg,
-#                 //upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Meir_Shapiro.jpg/83px-Meir_Shapiro.jpg,
-#                 //upload.wikimedia.org/wikipedia/commons/thumb/6/62/Schneur_Zalman_of_Liadi.jpg/96px-Schneur_Zalman_of_Liadi.jpg,
-#                 //upload.wikimedia.org/wikipedia/en/thumb/4/45/Steipler_Gaon.jpg/85px-Steipler_Gaon.jpg,
-#                 //upload.wikimedia.org/wikipedia/commons/thumb/0/02/Yitzchak_Elchanan_Spektor.jpg/85px-Yitzchak_Elchanan_Spektor.jpg,
-#                 //upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Shmuel_Salant.jpg/84px-Shmuel_Salant.jpg,
-#                 //upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Avraham_Mattisyahu_of_Shtefanesht.JPG/91px-Avraham_Mattisyahu_of_Shtefanesht.JPG,
-#                 //upload.wikimedia.org/wikipedia/commons/thumb/1/19/Reb_Chaim_Ozer.jpg/92px-Reb_Chaim_Ozer.jpg,
-#                 //upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Yisrael_Meir_Kagan.jpg/94px-Yisrael_Meir_Kagan.jpg,
-#                 //upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Rabbi_Kalischer.jpg/108px-Rabbi_Kalischer.jpg,
-#                 //upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Gershon_Edelshtein.jpg/77px-Gershon_Edelshtein.jpg,
-#                 //upload.wikimedia.org/wikipedia/commons/thumb/3/30/Reb_Moshe_Feinstein.jpg/120px-Reb_Moshe_Feinstein.jpg
-#                 ]
-                
-#         place = randomNum()
-#         let image = document.getElementById('image')
-#         image.setAttribute('src', array[place])
-#         print(array[place])
-#         }
-#         function randomNum(){
-#                 randomNumber = Math.floor(Math.random() * 17);
-#                 return randomNumber;
-#                 }
-
-# @app.get("/generate/<int:src>")
-# def generate(src):
-#         # image = db.session.query(Gedolim).filter(Gedolim.img_src == src).first()
-#         # new_image = random_gadol()
-#         return redirect(url_for("home"))
+@app.post("/refresh")
+def refresh():
+        
+        return redirect(url_for("home"))
 
 
-# @app.route('/print_items')
-# def print_items():
-#     cursor = db.execute('SELECT img_src FROM Gedolim')
-#     return render_template('print_items.html', items=cursor.fetchall())
+class Gadol:
+        def randomChoice1(target):
+                with app.app_context():
+                        gedolim = db.session.query(Gedolim).all()
+                        while True:
+                                randomNumber = random.randint(0, len(gedolim) - 1)
+                                if randomNumber != target:
+                                        return randomNumber                            
 
-# def random_gadol():
-#         with app.app_context():
-#                 obj = Gedolim.query.all()
-#                 randomNumber = random.randint(0, len(obj) - 1)
-#                 randomPhotoObject = obj[randomNumber]
-#                 randomImage = re.findall("//upload.+?(?=-https)", str(randomPhotoObject))
-#         return randomImage
+        def randomChoice2(gadol, choice1):
+                with app.app_context():
+                        gedolim = db.session.query(Gedolim).all()
+                        while True:
+                                randomNumber = random.randint(0, len(gedolim) - 1)
+                                if randomNumber != gadol:
+                                        if randomNumber != choice1:
+                                                return randomNumber
+        
+        def randomizeChoices(correct, option1, option2):
+                choices = ["placeholder1", "placeholder2", "placeholder3"]
+                place1 = random.randint(0, 2)
+                while True:
+                        place2 = random.randint(0, 2)
+                        if place2 != place1:
+                                break
+                while True:
+                        place3 = random.randint(0, 2)
+                        if place3 != place1:
+                                if place3 != place2:
+                                        break
+                choices[place1] = correct
+                choices[place2] = option1
+                choices[place3] = option2
+                return choices
+                                        
+        with app.app_context():
+                gedolim = db.session.query(Gedolim).all()
+                randomNumber = random.randint(0, len(gedolim) - 1)
+                randomPhotoObject = gedolim[randomNumber]
+                link = re.findall("http.+?(?=>)", str(randomPhotoObject))
+                source = re.findall("//upload.+?(?=-https)", str(randomPhotoObject))
+                source = "".join(source)
+                name = re.findall("Student.+?(?=-//)", str(randomPhotoObject))
+                name = ("".join(name)).replace(f"Student {randomNumber + 1}-", "")
+                randomNum1 = randomChoice1(randomNumber)
+                optObject1 = gedolim[randomNum1]
+                choice1 = re.findall("Student.+?(?=-//)", str(optObject1))
+                choice1 = ("".join(choice1)).replace(f"Student {randomNum1 + 1}-", "")
+                randomNum2 = randomChoice2(randomNumber, randomNum1)
+                optObject2 = gedolim[randomNum2]
+                choice2 = re.findall("Student.+?(?=-//)", str(optObject2))
+                choice2 = ("".join(choice2)).replace(f"Student {randomNum2 + 1}-", "")
+                choices = randomizeChoices(name, choice1, choice2)
 
-# class RandomChoice():
-#         with app.app_context():
-#                 obj = Gedolim.query.all()
-#                 randomNumber = random.randint(0, len(obj) - 1)
-#                 randomPhotoObject = obj[randomNumber]
-#                 print(randomPhotoObject)
+        def __init__(self, source_name=source, gadol_name=name, choices_array=choices, gadol_link=link):
+                self._source_name = source_name
+                self._gadol_name = gadol_name
+                self._choices_array = choices_array
+                self._gadol_link = gadol_link
 
+        @property
+        def source_name(self):
+                return self._source_name
 
-#         randomImage = re.findall("//upload.+?(?=-https)", str(randomPhotoObject))
-# return randomImage
+        @property
+        def gadol_name(self):
+                return self._gadol_name
+        
+        @property
+        def choices_array(self):
+                return self._choices_array
 
+        @property
+        def gadol_link(self):
+                return self._gadol_link

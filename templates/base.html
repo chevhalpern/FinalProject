@@ -86,8 +86,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="htpps://pyscript.net/alpha/pyscript.css" />
     <script defer src=”htpps://pyscript.net/alpha/pyscript.js”></script>
-    <!-- <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css" />
-<script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script> -->
+   
 </head>
 
 
@@ -98,135 +97,22 @@
         <h1 style="text-align:center;">Test Your Gedolim Knowledge!</h1>
       </div>
     <div class="image">
-            <img id="image" src="https://nechamafineart.com/wp-content/uploads/2023/03/63E360A7-5BDE-4A42-B259-1738E78659A1.jpeg">
-            <div class="restart" style="float: bottom;">
-                <button id="button" class="w3-button w3-purple w3-round-large" style="width:300px; height:50px"">Play!</button>
-            </div> 
-            <!-- <script>
-                function generate(){
-                    quiz = {
-                1 : {
-                    "source" : "//upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Vilna_Gaon_authentic_portrait.JPG/87px-Vilna_Gaon_authentic_portrait.JPG",
-                    "name" : "Vilna Gaon",
-                    "link" : "https://en.wikipedia.org/wiki/Vilna_Gaon"
-
-                },
-                2 : {
-                    "source" : "//upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Yitzchak_Zev_Soloveitchik.jpg/96px-Yitzchak_Zev_Soloveitchik.jpg",
-                    "name" : "Velvel Soloveitchik",
-                    "link" : "https://en.wikipedia.org/wiki/Velvel_Soloveitchik"
-
-                },
-                3 : {
-                    "source" : "//upload.wikimedia.org/wikipedia/commons/thumb/0/02/Medini_1.jpg/91px-Medini_1.jpg",
-                    "name" : "Sdei Chemed",
-                    "link" : "https://en.wikipedia.org/wiki/Sdei_Chemed"
-
-                },
-                4 : {
-                    "source" : "//upload.wikimedia.org/wikipedia/commons/thumb/3/38/Shlomo_Ganzfried.jpg/86px-Shlomo_Ganzfried.jpg",
-                    "name" : "Shlomo Ganzfried",
-                    "link" : "https://en.wikipedia.org/wiki/Shlomo_Ganzfried"
-
-                },
-                5 : {
-                    "source" : "//upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Chaim_Yosef_David_Azulai.jpg/88px-Chaim_Yosef_David_Azulai.jpg",
-                    "name" : "Chaim Yosef David Azulai",
-                    "link" : "https://en.wikipedia.org/wiki/Chaim_Yosef_David_Azulai"
-
-                },
-                6 : {
-                    "source" : "//upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Meir_Shapiro.jpg/83px-Meir_Shapiro.jpg",
-                    "name" : "Meir Shapiro",
-                    "link" : "https://en.wikipedia.org/wiki/Meir_Shapiro"
-
-                },
-                7 : {
-                    "source" : "//upload.wikimedia.org/wikipedia/commons/thumb/6/62/Schneur_Zalman_of_Liadi.jpg/96px-Schneur_Zalman_of_Liadi.jpg",
-                    "name" : "Baal HaTanya",
-                    "link" : "https://en.wikipedia.org/wiki/Baal_HaTanya"
-
-                },
-                8 : {
-                    "source" : "//upload.wikimedia.org/wikipedia/en/thumb/4/45/Steipler_Gaon.jpg/85px-Steipler_Gaon.jpg",
-                    "name" : "Steipler",
-                    "link" : "https://en.wikipedia.org/wiki/Steipler"
-
-                },
-                9 : {
-                    "source" : "//upload.wikimedia.org/wikipedia/commons/thumb/0/02/Yitzchak_Elchanan_Spektor.jpg/85px-Yitzchak_Elchanan_Spektor.jpg",
-                    "name" : "Yitzchak Elchanan Spektor",
-                    "link" : "https://en.wikipedia.org/wiki/Yitzchak_Elchanan_Spektor"
-
-                },
-                10 : {
-                    "source" : "//upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Shmuel_Salant.jpg/84px-Shmuel_Salant.jpg",
-                    "name" : "Shmuel Salant",
-                    "link" : "https://en.wikipedia.org/wiki/Shmuel_Salant"
-
-                },
-                11 : {
-                    "source" : "//upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Avraham_Mattisyahu_of_Shtefanesht.JPG/91px-Avraham_Mattisyahu_of_Shtefanesht.JPG",
-                    "name" : "Avraham Mattisyahu Friedman",
-                    "link" : "https://en.wikipedia.org/wiki/Avraham_Mattisyahu_Friedman"
-
-                },
-                12 : {
-                    "source" : "//upload.wikimedia.org/wikipedia/commons/thumb/1/19/Reb_Chaim_Ozer.jpg/92px-Reb_Chaim_Ozer.jpg",
-                    "name" : "Chaim Ozer Grodzenski",
-                    "link" : "https://en.wikipedia.org/wiki/Chaim_Ozer_Grodzenski"
-
-                },
-                13 : {
-                    "source" : "//upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Yisrael_Meir_Kagan.jpg/94px-Yisrael_Meir_Kagan.jpg",
-                    "name" : "Rabbi Yisrael Meir Kagan",
-                    "link" : "https://en.wikipedia.org/wiki/Rabbi_Yisrael_Meir_Kagan"
-
-                },
-                14 : {
-                    "source" : "//upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Rabbi_Kalischer.jpg/108px-Rabbi_Kalischer.jpg",
-                    "name" : "Tzvi Hirsch Kalischer",
-                    "link" : "https://en.wikipedia.org/wiki/Tzvi_Hirsch_Kalischer"
-
-                },
-                15 : {
-                    "source" : "//upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Gershon_Edelshtein.jpg/77px-Gershon_Edelshtein.jpg",
-                    "name" : "Gershon Edelstein",
-                    "link" : "https://en.wikipedia.org/wiki/Gershon_Edelstein"
-
-                },
-                16 : {
-                    "source" : "//upload.wikimedia.org/wikipedia/commons/thumb/3/30/Reb_Moshe_Feinstein.jpg/120px-Reb_Moshe_Feinstein.jpg",
-                    "name" : "Moshe Feinstein",
-                    "link" : "https://en.wikipedia.org/wiki/Moshe_Feinstein"
-
-                }
-            }
-        
-                place = randomNum()
-                let image = document.getElementById('image')
-                image.setAttribute('src', quiz[place]['source'])
-                document.getElementById('choice1').value="quiz[place]['name']"
-                document.getElementById('choice2').value="quiz[place+1]['name']"
-                document.getElementById('choice3').value="quiz[place+2]['name']"
-                }
-                function randomNum(){
-                    randomNumber = Math.floor(Math.random() * 17);
-                    return randomNumber;
-                 }
-            </script> -->
+            <img id="image" src="{{gedolim.source_name}}">
+                <div class="restart" style="float: bottom;">
+                    <button id="button" class="w3-button w3-purple w3-round-large" style="width:300px; height:50px" type="submit">Play!</button>
+                </div>
         <div class="buttons" style="float: right; width: 50%;">
             <div class="question">
                 <h1>Which Gadol is this?</h1>
             </div>
             <div class="area1">
-                <button id="choice1" class="w3-button w3-red w3-round-large" style="width:500px;">{{gedolim}}</button>
+                <button id="choice1" class="w3-button w3-red w3-round-large" style="width:500px;">{{gedolim.choices_array[0]}}</button>
             </div>
             <div class="area2">
-                <button id="choice2" class="w3-button w3-blue w3-round-large" style="width:500px;">Option 2</button>
+                <button id="choice2" class="w3-button w3-blue w3-round-large" style="width:500px;">{{gedolim.choices_array[1]}}</button>
             </div>
             <div class="area3">
-                <button id="choice3" class="w3-button w3-green w3-round-large" style="width:500px;">Option 3</button>
+                <button id="choice3" class="w3-button w3-green w3-round-large" style="width:500px;">{{gedolim.choices_array[2]}}</button>
             </div>
         </div>
     </div>   
