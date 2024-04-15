@@ -400,3 +400,200 @@
 
 # gedolim_image = db.session.query(Gedolim).all()
 #         gedolim_image = "//upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Vilna_Gaon_authentic_portrait.JPG/87px-Vilna_Gaon_authentic_portrait.JPG"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+    img {
+        border: 5px solid #000000;
+        border-radius: 12px;
+        height: 410px;
+        width: 300px;
+    }
+    body {
+    font-family: Copperplate, Papyrus, fantasy;
+    margin: 1;
+    }
+    .header {
+    padding: 10px;
+    border-radius: 12px;
+    text-align: center;
+    background: #b9ddff;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    }
+    .image {
+        width: 1250px;
+        height: 550px;
+        display: flex;
+        justify-content: left;
+        padding-top: 40px;
+        padding-left: 50px;
+        position: relative;
+        }
+    .buttons {
+        padding-left: 80px;
+        padding-top: 20px;
+        width: 1250px;
+        height: 430px;
+        display: inline-block;
+        justify-content: left;
+
+    }
+    .content 
+    {
+        padding:20px;
+    }
+    .left {
+    display: block;
+    margin-left: 20px;
+    margin-top: 30px;
+    }
+    .w3-button {
+        height: 80px;
+        width: 150px;
+    }
+    .area1 {
+        height: 100px;
+        width: 500px;
+    }
+    .area2 {
+        height: 100px;
+        width: 500px;
+    }
+    .area3 {
+        height: 100px;
+        width: 500px;
+    }
+    .question {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        height: 100px;
+        width: 500px;
+    }
+    .restart {
+        padding-top:0px;
+        height: 25px;
+        width: 300px;
+        position: absolute;
+        bottom: 0;
+        padding-bottom: 85px;
+
+    }
+    /* .popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    }
+    .popup .popuptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+    }
+    .popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+    }
+    .popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s
+    }
+    @-webkit-keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+    }
+    @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+    } */
+
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="htpps://pyscript.net/alpha/pyscript.css" />
+    <script defer src=”htpps://pyscript.net/alpha/pyscript.js”></script>
+   
+</head>
+
+
+<body>
+    <div class="header">
+        <h1 style="text-align:center;">Test Your Gedolim Knowledge!</h1>
+      </div>
+    <div class="image">
+        <img id="image" src="{{gedolim.source_name}}">
+            <div class="restart" style="float: bottom;">
+                <a id="button" href="" class="w3-button w3-purple w3-round-large" style="width:300px;height:40px;" type="submit">Play!</a>
+            </div>
+        <div class="buttons" style="float: right; width: 50%;">
+            <div class="question">
+                <h1>Which Gadol is this?</h1>
+            </div>
+            <div>
+            <!-- <div class="popup" onclick="myFunction()"> -->
+                <button id="choice1" class="w3-button w3-red w3-round-large" style="width:500px;">{{gedolim.choices_array[0]}}</button>
+                <!-- {% if gedolim.gadol_name == gedolim.choices_array[0] %} -->
+                <!-- =\-->
+                <!-- {% else %}
+                <span class="popuptext" id="myPopup">Hmm...not quite right! Play again! Click here to learn more about this Gadol! {{gedolim.gadol_link}}</span> -->
+            </div>
+            <!-- <script>
+                function myFunction() {
+                  var popup = document.getElementById("myPopup");
+                  popup.classList.toggle("show");
+                }
+            </script> -->
+            <div class="area2">
+                <button id="choice2" class="w3-button w3-blue w3-round-large" style="width:500px;">{{gedolim.choices_array[1]}}</button>
+            </div>
+            <div class="area3">
+                <button id="choice3" class="w3-button w3-green w3-round-large" style="width:500px;">{{gedolim.choices_array[2]}}</button>
+            </div>
+        </div>
+    </div>   
+</body>
+</html>

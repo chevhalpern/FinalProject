@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,22 +23,22 @@
     font-size: 20px;
     }
     .image {
-        width: 1250px;
+        width: 1500px;
         height: 550px;
         display: flex;
         justify-content: left;
         padding-top: 40px;
         padding-left: 50px;
         position: relative;
-        }
+            }
     .buttons {
         padding-left: 80px;
-        padding-top: 20px;
-        width: 1250px;
+        padding-top: 5px;
+        padding-right: 10px;
+        width: 905px;
         height: 430px;
         display: inline-block;
         justify-content: left;
-
     }
     .content 
     {
@@ -70,15 +71,73 @@
         height: 100px;
         width: 500px;
     }
+    .result {
+        padding-top: 100px;
+        padding-left: 150px;
+    }
     .restart {
-        padding-top:0px;
-        height: 25px;
+        padding-top:10px;
+        height: 100px;
         width: 300px;
         position: absolute;
         bottom: 0;
         padding-bottom: 85px;
-
     }
+    *{
+     margin: 0; 
+     padding: 0;
+     box-sizing: border-box;
+     font-family: 'Poppins', sans-serif;   
+    }
+    .popup-right {
+        width: 300px;
+        background: #fff;
+        border-radius: 6px;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        padding: 0 30px 30px;
+        visibility: hidden;
+    }
+    .popup-right img{
+        height: 100px;
+        width: 100px;
+        position: block;
+    }
+    .popup-right h2{
+        font-size: 38px;
+        font-weight: 500;
+        margin: 30px 0 10px;
+    }
+    .popup-wrong {
+        width: 300px;
+        background: #fff;
+        border-radius: 6px;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        padding: 0 30px 30px;
+        color: #333;
+        visibility: hidden;
+    }
+    .popup-wrong img{
+        height: 100px;
+        width: 100px;
+        position: block;
+    }
+    .popup-wrong h2{
+        font-size: 38px;
+        font-weight: 500;
+        margin: 30px 0 10px;
+    }
+
+
+
+
+
+
+
+
 
     </style>
     <meta charset="UTF-8">
@@ -90,8 +149,6 @@
 </head>
 
 
-
-
 <body>
     <div class="header">
         <h1 style="text-align:center;">Test Your Gedolim Knowledge!</h1>
@@ -101,20 +158,61 @@
                 <div class="restart" style="float: bottom;">
                     <button id="button" class="w3-button w3-purple w3-round-large" style="width:300px; height:50px" type="submit">Play!</button>
                 </div>
-        <div class="buttons" style="float: right; width: 50%;">
+        <div class="buttons" style="float: right;">
             <div class="question">
                 <h1>Which Gadol is this?</h1>
             </div>
-            <div class="area1">
-                <button id="choice1" class="w3-button w3-red w3-round-large" style="width:500px;">{{gedolim.choices_array[0]}}</button>
+            <div class="result" style="width:300px; height:300px; float:right;">
+                <div class="popup-right" id="popup-right">
+                    <img src="https://static-00.iconduck.com/assets.00/checkmark-running-icon-512x512-4t5e2jba.png">
+                    <h2>Correct!</h2>
+                    <a href="{{gedolim.gadol_link}}">Learn more about this Gadol!</a>
+                </div>
+                <div class="popup-wrong" id="popup-wrong">
+                    <img src="https://cdn-icons-png.flaticon.com/256/4225/4225690.png">
+                    <h2>Hmm...not quite right! Play again!</h2>
+                    <a href="{{gedolim.gadol_link}}">Learn more about this Gadol!</a>
+                </div>
             </div>
+            {% if gedolim.gadol_name == gedolim.choices_array[0] %}
+                <div class="area1">
+                    <button id="choice1" class="w3-button w3-red w3-round-large" style="width:500px;" onclick="right()">{{gedolim.choices_array[0]}}</button>
+                </div>
+            {% else %}
+                <div class="area1">
+                    <button id="choice1" class="w3-button w3-red w3-round-large" style="width:500px;" onclick="wrong()">{{gedolim.choices_array[0]}}</button>
+                </div>
+            {% endif %}
+            {% if gedolim.gadol_name == gedolim.choices_array[1] %}
             <div class="area2">
-                <button id="choice2" class="w3-button w3-blue w3-round-large" style="width:500px;">{{gedolim.choices_array[1]}}</button>
+                <button id="choice2" class="w3-button w3-blue w3-round-large" style="width:500px;" onclick="right()">{{gedolim.choices_array[1]}}</button>
             </div>
+            {% else %}
+            <div class="area2">
+                <button id="choice2" class="w3-button w3-blue w3-round-large" style="width:500px;" onclick="wrong()">{{gedolim.choices_array[1]}}</button>
+            </div>
+            {% endif %}
+            {% if gedolim.gadol_name == gedolim.choices_array[2] %}
             <div class="area3">
-                <button id="choice3" class="w3-button w3-green w3-round-large" style="width:500px;">{{gedolim.choices_array[2]}}</button>
+                <button id="choice3" class="w3-button w3-green w3-round-large" style="width:500px;" onclick="right()">{{gedolim.choices_array[2]}}</button>
             </div>
+            {% else %}
+            <div class="area3">
+                <button id="choice3" class="w3-button w3-green w3-round-large" style="width:500px;" onclick="wrong()">{{gedolim.choices_array[2]}}</button>
+            </div>
+            {% endif %}
         </div>
     </div>   
+  <script>
+    function right() {
+            element = document.querySelector('.popup-right');
+            element.style.visibility = 'visible';
+        }
+ 
+        function wrong() {
+            element = document.querySelector('.popup-wrong');
+            element.style.visibility = 'visible';
+        }
+  </script>
 </body>
 </html>

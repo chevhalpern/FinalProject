@@ -77,10 +77,29 @@ def home():
         gadol = Gadol()
         return render_template("base.html", gedolim=gadol)
 
-@app.post("/refresh")
-def refresh():
+# @app.get("/refresh/<int:gadol_id>")
+# def refresh(gadol_id):
+#         gadol = db.session.query(Gedolim).filter(Gedolim.id == gadol_id).first()
+#         new_gadol = Gadol()
+#         if new_gadol.id != gadol.id:
+#                 return redirect(url_for("home"))
+
+
+        # if new_gadol != gadol:
+        #         return redirect(url_for("home"))
+        # gedolim = db.session.query(Gedolim).filter(Gedolim.img_src == src).first()
+        # gadol = Gadol()
+        # while True:
+        #         if gadol.source_name != src:
         
-        return redirect(url_for("home"))
+# @app.get("/update/<int:todo_id>")
+# def update(todo_id):
+#     # todo = Todo.query.filter_by(id=todo_id).first()
+#     todo = db.session.query(Todo).filter(Todo.id == todo_id).first()
+#     todo.complete = not todo.complete
+#     db.session.commit()
+#     return redirect(url_for("home"))
+
 
 
 class Gadol:
@@ -100,6 +119,7 @@ class Gadol:
                                 if randomNumber != gadol:
                                         if randomNumber != choice1:
                                                 return randomNumber
+                                        
         
         def randomizeChoices(correct, option1, option2):
                 choices = ["placeholder1", "placeholder2", "placeholder3"]
@@ -123,9 +143,11 @@ class Gadol:
                 randomNumber = random.randint(0, len(gedolim) - 1)
                 randomPhotoObject = gedolim[randomNumber]
                 link = re.findall("http.+?(?=>)", str(randomPhotoObject))
+                link = "".join(link)
                 source = re.findall("//upload.+?(?=-https)", str(randomPhotoObject))
                 source = "".join(source)
                 name = re.findall("Student.+?(?=-//)", str(randomPhotoObject))
+                id = randomNumber + 1
                 name = ("".join(name)).replace(f"Student {randomNumber + 1}-", "")
                 randomNum1 = randomChoice1(randomNumber)
                 optObject1 = gedolim[randomNum1]
@@ -137,12 +159,17 @@ class Gadol:
                 choice2 = ("".join(choice2)).replace(f"Student {randomNum2 + 1}-", "")
                 choices = randomizeChoices(name, choice1, choice2)
 
-        def __init__(self, source_name=source, gadol_name=name, choices_array=choices, gadol_link=link):
+        def __init__(self, gadol_id=id, source_name=source, gadol_name=name, choices_array=choices, gadol_link=link):
+                self._gadol_id = gadol_id
                 self._source_name = source_name
                 self._gadol_name = gadol_name
                 self._choices_array = choices_array
                 self._gadol_link = gadol_link
 
+        @property
+        def gadol_id(self):
+                return self._gadol_id
+        
         @property
         def source_name(self):
                 return self._source_name
