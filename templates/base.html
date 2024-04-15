@@ -10,17 +10,13 @@
         height: 410px;
         width: 300px;
     }
-    body {
-    font-family: Copperplate, Papyrus, fantasy;
-    margin: 1;
-    }
     .header {
-    padding: 10px;
-    border-radius: 12px;
-    text-align: center;
-    background: #b9ddff;
-    color: rgb(0, 0, 0);
-    font-size: 20px;
+        padding: 10px;
+        border-radius: 12px;
+        text-align: center;
+        background: #b9ddff;
+        color: rgb(0, 0, 0);
+        font-size: 20px;
     }
     .image {
         width: 1500px;
@@ -30,7 +26,7 @@
         padding-top: 40px;
         padding-left: 50px;
         position: relative;
-            }
+    }
     .buttons {
         padding-left: 80px;
         padding-top: 5px;
@@ -40,14 +36,10 @@
         display: inline-block;
         justify-content: left;
     }
-    .content 
-    {
-        padding:20px;
-    }
     .left {
-    display: block;
-    margin-left: 20px;
-    margin-top: 30px;
+        display: block;
+        margin-left: 20px;
+        margin-top: 30px;
     }
     .w3-button {
         height: 80px;
@@ -87,7 +79,7 @@
      margin: 0; 
      padding: 0;
      box-sizing: border-box;
-     font-family: 'Poppins', sans-serif;   
+     /* font-family: 'Poppins', sans-serif;    */
     }
     .popup-right {
         width: 300px;
@@ -151,16 +143,16 @@
 
 <body>
     <div class="header">
-        <h1 style="text-align:center;">Test Your Gedolim Knowledge!</h1>
+        <h1 style="text-align:center; font-family: Copperplate, Papyrus, fantasy; font-size:45px;">Test Your Gedolim Knowledge!</h1>
       </div>
     <div class="image">
             <img id="image" src="{{gedolim.source_name}}">
                 <div class="restart" style="float: bottom;">
-                    <button id="button" class="w3-button w3-purple w3-round-large" style="width:300px; height:50px" type="submit">Play!</button>
+                    <button id="button" class="w3-button w3-purple w3-round-large" style="width:300px; height:50px; font-family: 'Trebuchet MS', sans-serif;  font-size: 25px;" type="submit" onclick="refresh()">Play!</button>
                 </div>
         <div class="buttons" style="float: right;">
             <div class="question">
-                <h1>Which Gadol is this?</h1>
+                <h1 style="font-family: 'Trebuchet MS', sans-serif; font-size: 45px;">Which Gadol is this?</h1>
             </div>
             <div class="result" style="width:300px; height:300px; float:right;">
                 <div class="popup-right" id="popup-right">
@@ -175,35 +167,38 @@
                 </div>
             </div>
             {% if gedolim.gadol_name == gedolim.choices_array[0] %}
-                <div class="area1">
+                <div class="area1" style="font-family: 'Trebuchet MS', sans-serif; font-size: 25px;">
                     <button id="choice1" class="w3-button w3-red w3-round-large" style="width:500px;" onclick="right()">{{gedolim.choices_array[0]}}</button>
                 </div>
             {% else %}
-                <div class="area1">
+                <div class="area1" style="font-family: 'Trebuchet MS', sans-serif; font-size: 25px;">
                     <button id="choice1" class="w3-button w3-red w3-round-large" style="width:500px;" onclick="wrong()">{{gedolim.choices_array[0]}}</button>
                 </div>
             {% endif %}
             {% if gedolim.gadol_name == gedolim.choices_array[1] %}
-            <div class="area2">
+            <div class="area2" style="font-family: 'Trebuchet MS', sans-serif; font-size: 25px;">
                 <button id="choice2" class="w3-button w3-blue w3-round-large" style="width:500px;" onclick="right()">{{gedolim.choices_array[1]}}</button>
             </div>
             {% else %}
-            <div class="area2">
+            <div class="area2" style="font-family: 'Trebuchet MS', sans-serif; font-size: 25px;">
                 <button id="choice2" class="w3-button w3-blue w3-round-large" style="width:500px;" onclick="wrong()">{{gedolim.choices_array[1]}}</button>
             </div>
             {% endif %}
             {% if gedolim.gadol_name == gedolim.choices_array[2] %}
-            <div class="area3">
+            <div class="area3" style="font-family: 'Trebuchet MS', sans-serif; font-size: 25px;">
                 <button id="choice3" class="w3-button w3-green w3-round-large" style="width:500px;" onclick="right()">{{gedolim.choices_array[2]}}</button>
             </div>
             {% else %}
-            <div class="area3">
+            <div class="area3" style="font-family: 'Trebuchet MS', sans-serif; font-size: 25px;">
                 <button id="choice3" class="w3-button w3-green w3-round-large" style="width:500px;" onclick="wrong()">{{gedolim.choices_array[2]}}</button>
             </div>
             {% endif %}
         </div>
     </div>   
   <script>
+    function refresh(){
+        
+    }
     function right() {
             element = document.querySelector('.popup-right');
             element.style.visibility = 'visible';
