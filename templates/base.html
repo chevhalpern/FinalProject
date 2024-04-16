@@ -163,7 +163,7 @@
                 <div class="popup-wrong" id="popup-wrong">
                     <img src="https://cdn-icons-png.flaticon.com/256/4225/4225690.png">
                     <h2>Hmm...not quite right! Play again!</h2>
-                    <a href="{{gedolim.gadol_link}}">Learn more about this Gadol!</a>
+                    <a href="{{gedolim.gadol_link}}" target="_blank" rel="noopener noreferrer">Learn more about this Gadol!</a>
                 </div>
             </div>
             {% if gedolim.gadol_name == gedolim.choices_array[0] %}
@@ -197,7 +197,7 @@
     </div>   
   <script>
     // function refresh(){
-        
+    //     let origin = location.origin
     // }
             let button1 = document.getElementById('choice1')
             let button2 = document.getElementById('choice2')
