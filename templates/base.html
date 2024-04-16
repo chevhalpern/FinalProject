@@ -196,17 +196,27 @@
         </div>
     </div>   
   <script>
-    function refresh(){
+    // function refresh(){
         
-    }
+    // }
+            let button1 = document.getElementById('choice1')
+            let button2 = document.getElementById('choice2')
+            let button3 = document.getElementById('choice3')
     function right() {
             element = document.querySelector('.popup-right');
             element.style.visibility = 'visible';
+            button1.disabled = true;
+            button2.disabled = true;
+            button3.disabled = true;
         }
+
  
         function wrong() {
             element = document.querySelector('.popup-wrong');
             element.style.visibility = 'visible';
+            button1.disabled = true;
+            button2.disabled = true;
+            button3.disabled = true;
         }
   </script>
 </body>

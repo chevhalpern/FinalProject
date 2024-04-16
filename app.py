@@ -20,6 +20,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
+# INITIALIZE DATABASE PROPERTIES
 class Gedolim(db.Model):
         id = db.Column(db.Integer, primary_key=True)
         gadol_name = db.Column(db.String(150))
@@ -34,6 +35,7 @@ class Gedolim(db.Model):
         def __repr__(self):
                 return f'<Student {self.id}-{self.gadol_name}-{self.img_src}-{self.link_src}>'
 
+# USING WEB SCRAPPING TO GET DATA
 def getGedolimData():
         response = requests.get("https://en.wikipedia.org/wiki/Gedolim_pictures")
         soup = BeautifulSoup(response.content, 'html.parser')
@@ -60,6 +62,7 @@ def getGedolimData():
         all_info.append(links)
         return all_info
 
+# ADD GATHERED DATA TO DATABASE
 @app.post("/add")
 def add():
         with app.app_context():  # initialize table with Gedolim
@@ -71,7 +74,7 @@ def add():
                 db.session.commit()
                 return redirect(url_for("home"))
 
-
+# INITIALIZE HTML AND SEND PARAMETER
 @app.get("/")
 def home():
         gadol = Gadol()
@@ -85,23 +88,7 @@ def home():
 #                 return redirect(url_for("home"))
 
 
-        # if new_gadol != gadol:
-        #         return redirect(url_for("home"))
-        # gedolim = db.session.query(Gedolim).filter(Gedolim.img_src == src).first()
-        # gadol = Gadol()
-        # while True:
-        #         if gadol.source_name != src:
-        
-# @app.get("/update/<int:todo_id>")
-# def update(todo_id):
-#     # todo = Todo.query.filter_by(id=todo_id).first()
-#     todo = db.session.query(Todo).filter(Todo.id == todo_id).first()
-#     todo.complete = not todo.complete
-#     db.session.commit()
-#     return redirect(url_for("home"))
-
-
-
+# CREATE CLASS AND INITIALIZE PROPERTIES
 class Gadol:
         def randomChoice1(target):
                 with app.app_context():
