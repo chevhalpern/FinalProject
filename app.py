@@ -1,13 +1,12 @@
 import os
-from flask import Flask, render_template, request, url_for, redirect
+from flask import Flask, render_template, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
 import re
 from bs4 import BeautifulSoup
 import requests
 import random
-from sqlalchemy.sql import func
 
-# SET UP FLASK AND DATABASE
+# SET UP FLASK AND DATABASE CONNECTION
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
@@ -16,29 +15,35 @@ app.config['SQLALCHEMY_DATABASE_URI'] =\
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-# INITIALIZE DATABASE PROPERTIES
+# INITIALIZE DATABASE GEDOLIM
 class Gedolim(db.Model):
+        # INITIALIZE COLUMN NAMES
         id = db.Column(db.Integer, primary_key=True)
         gadol_name = db.Column(db.String(150))
         img_src = db.Column(db.String(255))
         link_src = db.Column(db.String(255))
 
+        # CTOR TO SET UP AND ACCESS TABLE PROPERTIES
         def __init__(self, gadol_name, img_src, link_src):
                 self.gadol_name = gadol_name
                 self.img_src = img_src
                 self.link_src = link_src
 
+        # STRING REPRESENTATION OF TABLE DATA
         def __repr__(self):
                 return f'<Student {self.id}-{self.gadol_name}-{self.img_src}-{self.link_src}>'
 
 # USING WEB SCRAPPING TO GET DATA
 def getGedolimData():
+        # GET DATA FROM WIKIPEDIA SITE
         response = requests.get("https://en.wikipedia.org/wiki/Gedolim_pictures")
         soup = BeautifulSoup(response.content, 'html.parser')
+        # INITIALIZE LISTS THAT WILL HOLD TARGETED DATA
         images = []
         links = []
         names = []
         all_info = []
+        # USING REGEX TO FIND TARGETED DATA
         for x in soup.find_all('ul', {"class": "gallery mw-gallery-traditional center"}):
                 for k in x.find_all('div', {"class": "gallerytext"}):
                         k = str(k)
@@ -53,26 +58,30 @@ def getGedolimData():
                 for i in image:
                         i = i.replace("src=\"", "")
                         images.append(i)
+        # CREATE ONE LIST OF ALL TARGETED DATA
         all_info.append(names)
         all_info.append(images)
         all_info.append(links)
         return all_info
 
-# ADD GATHERED DATA TO DATABASE
+# ADD GATHERED DATA TO DATABASE (USED COMMENTED BUTTON IN HTML TO ASSIST PROCESS)
 @app.post("/add")
 def add():
-        with app.app_context():  # initialize table with Gedolim
+        with app.app_context():
+                # RETRIEVE DATA
                 db.create_all()
                 data = getGedolimData()
-                count = 0
+                # ADD DATA INTO CORRECT FIELDS IN DATABASE
                 for row in range(0, 16):
                         db.session.add(Gedolim(f'{data[0][row]}', f'{data[1][row]}', f'{data[2][row]}'))
+                # COMMIT AND RETURN CHANGES
                 db.session.commit()
                 return redirect(url_for("home"))
 
-# INITIALIZE HTML AND SEND PARAMETER FROM GADOL CLASS
+# INITIALIZE HTML AND HOME PAGE
 @app.get("/")
 def home():
+        # CREATE, SET UP AND SEND PARAMETER FROM GADOL CLASS
         gadol = Gadol()
         gadol.setUpGadol()
         return render_template("base.html", gedolim=gadol)
@@ -152,6 +161,7 @@ class Gadol:
                 self._choices_array = ["rabbi", "rabbi1", "rabbi2"]
                 self._gadol_link = "https://www.rabbi.com"
 
+        # SET EACH VALUE TO A PROPERTY SO THEY ARE ACCESSIBLE
         @property
         def gadol_id(self):
                 return self._gadol_id

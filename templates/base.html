@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-    <style>
+    <!-- STYLING FOR ELEMENTS ON PAGE -->
+    <style> 
     img {
         border: 5px solid #000000;
         border-radius: 12px;
@@ -78,7 +79,6 @@
      margin: 0; 
      padding: 0;
      box-sizing: border-box;
-     /* font-family: 'Poppins', sans-serif;    */
     }
     .popup-right {
         width: 300px;
@@ -129,30 +129,41 @@
 
 
 <body>
+    <!-- USED TO ADD GEDOLIM TO DATABASE -->
+<!-- <form action="/add" method="post">
+    <button class="ui blue button" type="submit">Add</button>
+</form> -->
+    <!-- HEADER -->
     <div class="header">
-        <h1 style="text-align:center; font-family: Copperplate, Papyrus, fantasy; font-size:45px;">Test Your Gedolim Knowledge!</h1>
-      </div>
+    <h1 style="text-align:center; font-family: Copperplate, Papyrus, fantasy; font-size:45px;">Test Your Gedolim Knowledge!</h1>
+    </div>
     <div class="image">
+        <!-- IMAGE -->
             <img id="image" src="{{gedolim.source_name}}">
                 <div class="restart" style="float: bottom;">
+                    <!-- PLAY BUTTON -->
                     <button id="button" class="w3-button w3-purple w3-round-large" style="width:300px; height:50px; font-family: 'Trebuchet MS', sans-serif;  font-size: 25px;" type="submit" onclick="refresh()">Play!</button>
                 </div>
         <div class="buttons" style="float: right;">
+            <!-- QUESTION -->
             <div class="question">
                 <h1 style="font-family: 'Trebuchet MS', sans-serif; font-size: 45px;">Which Gadol is this?</h1>
             </div>
             <div class="result" style="width:300px; height:300px; float:right;">
+                <!-- ANSWER CORRECT -->
                 <div class="popup-right" id="popup-right">
                     <img src="https://static-00.iconduck.com/assets.00/checkmark-running-icon-512x512-4t5e2jba.png">
                     <h2>Correct!</h2>
                     <a href="{{gedolim.gadol_link}}" target="_blank" rel="noopener noreferrer">Learn more about this Gadol!</a>
                 </div>
+                <!-- ANSWER WRONG -->
                 <div class="popup-wrong" id="popup-wrong">
                     <img src="https://cdn-icons-png.flaticon.com/256/4225/4225690.png">
                     <h2>Hmm...not quite right! Play again!</h2>
                     <a href="{{gedolim.gadol_link}}" target="_blank" rel="noopener noreferrer">Learn more about this Gadol!</a>
                 </div>
             </div>
+            <!-- FIRST CHOICE -->
             {% if gedolim.gadol_name == gedolim.choices_array[0] %}
                 <div class="area1" style="font-family: 'Trebuchet MS', sans-serif; font-size: 25px;">
                     <button id="choice1" class="w3-button w3-red w3-round-large" style="width:500px;" onclick="right()">{{gedolim.choices_array[0]}}</button>
@@ -162,6 +173,7 @@
                     <button id="choice1" class="w3-button w3-red w3-round-large" style="width:500px;" onclick="wrong()">{{gedolim.choices_array[0]}}</button>
                 </div>
             {% endif %}
+            <!-- SECOND CHOICE -->
             {% if gedolim.gadol_name == gedolim.choices_array[1] %}
             <div class="area2" style="font-family: 'Trebuchet MS', sans-serif; font-size: 25px;">
                 <button id="choice2" class="w3-button w3-blue w3-round-large" style="width:500px;" onclick="right()">{{gedolim.choices_array[1]}}</button>
@@ -171,6 +183,7 @@
                 <button id="choice2" class="w3-button w3-blue w3-round-large" style="width:500px;" onclick="wrong()">{{gedolim.choices_array[1]}}</button>
             </div>
             {% endif %}
+            <!-- THIRD CHOICE -->
             {% if gedolim.gadol_name == gedolim.choices_array[2] %}
             <div class="area3" style="font-family: 'Trebuchet MS', sans-serif; font-size: 25px;">
                 <button id="choice3" class="w3-button w3-green w3-round-large" style="width:500px;" onclick="right()">{{gedolim.choices_array[2]}}</button>
@@ -182,13 +195,17 @@
             {% endif %}
         </div>
     </div>   
+    <!-- FUNCTIONS -->
   <script>
+    // WHEN USER CLICKS PLAY BUTTON - REFRESHES NEW PAGE AND SENDS NEW GADOL
     function refresh(){
         window.location.reload()
     }
             let button1 = document.getElementById('choice1')
             let button2 = document.getElementById('choice2')
             let button3 = document.getElementById('choice3')
+
+    // IF USER CHOSE THE RIGHT ANSWER
     function right() {
             element = document.querySelector('.popup-right');
             element.style.visibility = 'visible';
@@ -197,7 +214,7 @@
             button3.disabled = true;
         }
 
- 
+    // IF USER CHOSE THE WRONG ANSWER
         function wrong() {
             element = document.querySelector('.popup-wrong');
             element.style.visibility = 'visible';
