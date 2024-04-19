@@ -23,12 +23,6 @@ class Gedolim(db.Model):
         img_src = db.Column(db.String(255))
         link_src = db.Column(db.String(255))
 
-        # CTOR TO SET UP AND ACCESS TABLE PROPERTIES
-        def __init__(self, gadol_name, img_src, link_src):
-                self.gadol_name = gadol_name
-                self.img_src = img_src
-                self.link_src = link_src
-
         # STRING REPRESENTATION OF TABLE DATA
         def __repr__(self):
                 return f'<Student {self.id}-{self.gadol_name}-{self.img_src}-{self.link_src}>'
